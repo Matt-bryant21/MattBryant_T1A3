@@ -1,23 +1,44 @@
-#create a class to control each input variable
-class User:
-    def __init__(self, name, age, gender, height, weight, activity_level):
-        self.name = name
-        self.age = age
-        self.gender = gender
-        self.height = height
-        self.weight = weight
-        self.activity_level = activity_level
+# a central function to control order of execution
+def main():
+    name = name()
+    age = age()
+    gender = gender()
+    weight = weight()
+    height = height()
+
+# take name inpout and avoid blank entry
+def name():
+    name = input("Please enter your name : ")
+    while name == (""):
+        print("please enter your name this field cannot be blank")
+        name = input("Please enter your name : ")
+    print("Hello and welcome to your calorie calculator, " + name) 
    
+name()
 
-#create a function using class objects to control each input
-def user_input(User):
+# take age input and prevent invalid age
+def age(): 
+    age = int(input("Please enter your age: "))
+    while age < 0 or age > 100:
+        age = int(input("Invalid input. Please enter your correct age: "))
+    else:
+        return age
+    
+
+age() 
+
+# take user gender
+def gender():
+    genders = ["male", "female", "m", "f"]
     while True:
-        try:
-            name = (input("Please enter your age: "))
-        except ValueError:
-            print("Sorry, I didn't understand that.")
-            continue
+        gender = (input("Please enter your gender: ").lower())
+        while gender not in genders:
+            gender = input("Please enter either 'Male' or 'Female': ").lower()
         else:
-            break  
+            return gender
+            break
 
-user_input(User)
+gender()
+
+
+
