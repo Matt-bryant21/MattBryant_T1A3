@@ -65,6 +65,12 @@ def height():
 
 height()
 
+def activity_level():
+    global user_activity_level
+    user_activity_level = input("Please enter your activity level").lower()
+
+
+
 def bmr():
     global male_bmr
     global female_bmr
@@ -76,6 +82,9 @@ def bmr():
         print("Your basal metabolic rate is: " + str(female_bmr))
     
 bmr()
+
+
+
 
 def goals():
     global user_goals
