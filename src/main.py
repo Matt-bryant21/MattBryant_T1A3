@@ -9,10 +9,10 @@
 
 # take name input and avoid blank entry
 def name():
-    user_name = input("Please enter your name : ")
+    user_name = input("Please enter your name: ")
     while user_name == (""):
         print("please enter your name this field cannot be blank")
-        user_name = input("Please enter your name : ")
+        user_name = input("Please enter your name: ")
     print("Hello and welcome to your calorie calculator, " + user_name) 
    
 name()
@@ -47,7 +47,7 @@ gender()
 def weight():
     global user_weight
     user_weight = int(input("Please enter your weight in kilograms: "))
-    while user_weight <= 0:
+    while user_weight <= 0 or user_weight > 130:
         user_weight = int(input("Invalid input. Please enter your weight in kilograms: "))
     else:
         return user_weight
@@ -87,39 +87,6 @@ def activity_level():
 
 activity_level()
 
-# def goals():
-#     global maintenance_calories
-#     if user_gender == 'male' and user_activity_level == "sedentary":
-#         maintenance_calories = str(male_bmr * 1.2)
-#         print("To maintain your current weight, you should to be consuming " + str(maintenance_calories) + " calories per day")
-#     elif user_gender == "female" and user_activity_level == "sedentary":
-#         maintenance_calories = str(female_bmr * 1.2)
-#         print("To maintain your current weight, you should be consuming " + str(maintenance_calories) + " calories per day")
-#     elif user_gender == 'male' and user_activity_level == "lightly active":
-#         maintenance_calories = str(male_bmr * 1.375)
-#         print("To maintain your current weight, you should to be consuming " + str(maintenance_calories) + " calories per day")
-#     elif user_gender == "female" and user_activity_level == "lightly active":
-#         maintenance_calories = str(female_bmr * 1.375)
-#         print("To maintain your current weight, you should be consuming " + str(maintenance_calories) + " calories per day")
-#     elif user_gender == 'male' and user_activity_level == "moderately active":
-#         maintenance_calories = str(male_bmr * 1.55)
-#         print("To maintain your current weight, you should to be consuming " + str(maintenance_calories) + " calories per day")
-#     elif user_gender == "female" and user_activity_level == "moderately active":
-#         maintenance_calories = str(female_bmr * 1.55)
-#         print("To maintain your current weight, you should be consuming " + str(maintenance_calories) + " calories per day")
-#     elif user_gender == 'male' and user_activity_level == "very active":
-#         maintenance_calories = str(male_bmr * 1.725)
-#         print("To maintain your current weight, you should to be consuming " + str(maintenance_calories) + " calories per day")
-#     elif user_gender == "female" and user_activity_level == "very active":
-#         maintenance_calories = str(female_bmr * 1.725)
-#         print("To maintain your current weight, you should be consuming " + str(maintenance_calories) + " calories per day")    
-#     elif user_gender == 'male' and user_activity_level == "extra active":
-#         maintenance_calories = str(male_bmr * 1.9)
-#         print("To maintain your current weight, you should to be consuming " + str(maintenance_calories) + " calories per day")
-#     elif user_gender == "female" and user_activity_level == "extra active":
-#         maintenance_calories = str(female_bmr * 1.9)
-#         print("To maintain your current weight, you should be consuming " + str(maintenance_calories) + " calories per day")
-# goals()
 
 def maintenance():
     global maintenance_calories
@@ -139,23 +106,31 @@ def maintenance():
     user_key = (user_gender, user_activity_level)
     if user_key in multipliers:
         multiplier = multipliers[user_key]
-        maintenance_calories = str(round(male_bmr if user_gender == 'male' else female_bmr, 2) * multiplier)
+        maintenance_calories = (round(male_bmr if user_gender == 'male' else female_bmr, 2) * multiplier)
         print(f"To maintain your current weight, you should be consuming {maintenance_calories} calories per day")
     else:
         print("Invalid gender or activity level.")
 
 maintenance()
 
-def goals():
-    global goals
-    goals = input("What are your current goals? (lose weight, build muscle, maintain) ").lower()
-    if goals == "lose weight":
-        print("You should be consuming" + str(maintenance_calories - 500))
-    elif goals == "build muscle":
-        print("You should be consuming" + str(maintenance_calories + 500))
-    elif goals == "maintain":
-        print("keep sticking with" + str(maintenance_calories))
+global user_goal
+
+def goals(maintenance_calories):
+    user_goal = input("What are your current goals? (lose weight, build muscle, maintain) ").lower()
     
-goals()
+    if user_goal == "lose weight":
+        calories_needed = maintenance_calories - 500
+    elif user_goal == "build muscle":
+        calories_needed = maintenance_calories + 500
+    elif user_goal == "maintain":
+        calories_needed = maintenance_calories
+    else:
+        print("Invalid goal.")
+        return
     
+    print("You should be consuming " + str(calories_needed) + " calories per day")
+
+goals(maintenance_calories)
+
+
 
