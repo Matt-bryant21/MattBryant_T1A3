@@ -95,28 +95,14 @@ def get_goals(maintenance_calories):
                 return "Maintain - {} calories".format(maintenance_calories)
         print("Please enter a valid goal (lose weight, build muscle, maintain).")
 
-
-def write_to_file(user_name, user_bmr, maintenance_calories, user_goal, meal_calories):
-    with open("calorie_info.txt", "w") as file:
-        file.write("User Name: {}\n".format(user_name))
-        file.write("Basal Metabolic Rate (BMR): {}\n".format(user_bmr))
-        file.write("Maintenance Calories: {}\n".format(maintenance_calories))
-        file.write("User Goal: {}\n".format(user_goal))
-
-        # Write meal distribution to the text file
-        file.write("\nCalorie Distribution for the Day:\n")
-        for meal, calories in meal_calories.items():
-            file.write(f"{meal.capitalize()}: {calories} calories\n")
-
-
-# Add this function to your code to distribute calories into meal categories
+# distribute calories in ratios for meals
 def distribute_calories(total_calories):
-    # Define the calorie distribution for each meal
+    
     meal_distribution = {
-        "breakfast": 0.25,
-        "lunch": 0.35,
-        "dinner": 0.25,
-        "snacks": 0.15,
+        "breakfast": 0.3,
+        "lunch": 0.3,
+        "dinner": 0.3,
+        "snacks": 0.1,
     }
 
     meal_calories = {}
@@ -124,6 +110,17 @@ def distribute_calories(total_calories):
         meal_calories[meal] = int(total_calories * ratio)
 
     return meal_calories
+
+# write info to text file
+def write_to_file(user_name, user_bmr, maintenance_calories, user_goal, meal_calories):
+    with open("calorie_info.txt", "w") as file:
+        file.write("User Name: {}\n".format(user_name))
+        file.write("Basal Metabolic Rate (BMR): {}\n".format(user_bmr))
+        file.write("Maintenance Calories: {}\n".format(maintenance_calories))
+        file.write("User Goal: {}\n".format(user_goal))    
+        file.write("\nCalorie Distribution for Each Day:\n")
+        for meal, calories in meal_calories.items():
+            file.write(f"{meal.capitalize()}: {calories} calories\n")
 
 
 def main():
@@ -141,16 +138,14 @@ def main():
     print(f"Your basal metabolic rate (BMR) is: {user_bmr}")
     print(f"To maintain your current weight, you should be consuming {maintenance_calories} calories per day.")
     print(f"Your goal is to {user_goal} calories per day.")
-
-    # Distribute calories into meal categories
-    meal_calories = distribute_calories(int(user_goal.split(" - ")[1].split(" ")[0]))  # Extract the calorie value from user_goal
-
-    print("\nCalorie Distribution for the Day:")
+    print("\nCalorie Distribution for Each Day:")
     for meal, calories in meal_calories.items():
         print(f"{meal.capitalize()}: {calories} calories")
 
-    # Write information to a text file, including meal distribution
-    write_to_file(user_name, user_bmr, maintenance_calories, user_goal, meal_calories)
+   
+    meal_calories = distribute_calories(int(user_goal.split(" - ")[1].split(" ")[0]))  # Extract the calorie value from user_goal
 
+    
+   
 if __name__ == "__main__":
     main()
