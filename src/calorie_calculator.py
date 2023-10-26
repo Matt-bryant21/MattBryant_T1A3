@@ -1,4 +1,4 @@
-#take user name
+# take user name
 def get_name():
     while True:
         user_name = input("Please enter your name: ").strip()
@@ -7,6 +7,8 @@ def get_name():
         print("Please enter your name; this field cannot be blank.")
 
 # take user age
+
+
 def get_age():
     while True:
         try:
@@ -17,6 +19,8 @@ def get_age():
         except ValueError:
             print("Invalid input. Please enter a numeric age.")
 # take user gender
+
+
 def get_gender():
     genders = ["male", "female", "m", "f"]
     while True:
@@ -26,20 +30,26 @@ def get_gender():
         print("Please enter either 'Male' or 'Female'.")
 
 # take user weight
+
+
 def get_weight():
     while True:
         try:
-            user_weight = float(input("Please enter your weight in kilograms: "))
+            user_weight = float(
+                input("Please enter your weight in kilograms: "))
             if 0 < user_weight <= 130:
                 return user_weight
             print("Invalid weight. Please enter a valid weight (0-130 kg).")
         except ValueError:
             print("Invalid input. Please enter a numeric weight.")
 # take user height
+
+
 def get_height():
     while True:
         try:
-            user_height = float(input("Please enter your height in centimeters: "))
+            user_height = float(
+                input("Please enter your height in centimeters: "))
             if 0 < user_height <= 250:
                 return user_height
             print("Invalid height. Please enter a valid height (0-250 cm).")
@@ -47,26 +57,36 @@ def get_height():
             print("Invalid input. Please enter a numeric height.")
 
 # calculate bmr for either male or female
+
+
 def calculate_bmr(user_age, user_gender, user_weight, user_height):
     if user_gender == "male":
-        male_bmr = 66 + (13.7 * user_weight) + (5 * user_height) - (6.8 * user_age)
+        male_bmr = 66 + (13.7 * user_weight) + \
+            (5 * user_height) - (6.8 * user_age)
         return male_bmr
     elif user_gender == "female":
-        female_bmr = 655 + (9.6 * user_weight) + (1.8 * user_height) - (4.7 * user_age)
+        female_bmr = 655 + (9.6 * user_weight) + \
+            (1.8 * user_height) - (4.7 * user_age)
         return female_bmr
     else:
         raise ValueError("Invalid gender.")
 
 # take user activity level
+
+
 def get_activity_level():
-    activity_levels = ["sedentary", "lightly active", "moderately active", "very active", "extra active"]
+    activity_levels = ["sedentary", "lightly active",
+                       "moderately active", "very active", "extra active"]
     while True:
-        user_activity_level = input("Please enter your activity level (sedentary, lightly active, moderately active, very active, extra active): ").strip().lower()
+        user_activity_level = input(
+            "Please enter your activity level (sedentary, lightly active, moderately active, very active, extra active): ").strip().lower()
         if user_activity_level in activity_levels:
             return user_activity_level
         print("Please enter a valid activity level.")
 
 # calculate user maintenance calories
+
+
 def calculate_maintenance_calories(bmr, user_activity_level):
     activity_multipliers = {
         "sedentary": 1.2,
@@ -83,9 +103,12 @@ def calculate_maintenance_calories(bmr, user_activity_level):
         raise ValueError("Invalid activity level.")
 
 # take user goals and calculate new caloric intake
+
+
 def get_goals(maintenance_calories):
     while True:
-        user_goal = input("What are your current goals? (lose weight, build muscle, maintain): ").strip().lower()
+        user_goal = input(
+            "What are your current goals? (lose weight, build muscle, maintain): ").strip().lower()
         if user_goal in ["lose weight", "build muscle", "maintain"]:
             if user_goal == "lose weight":
                 return "Lose Weight - {} calories".format(maintenance_calories - 500)
@@ -134,23 +157,29 @@ def main():
     user_height = get_height()
     user_bmr = calculate_bmr(user_age, user_gender, user_weight, user_height)
     user_activity_level = get_activity_level()
-    maintenance_calories = calculate_maintenance_calories(user_bmr, user_activity_level)
+    maintenance_calories = calculate_maintenance_calories(
+        user_bmr, user_activity_level)
     user_goal = get_goals(maintenance_calories)
 
     print(f"Hello and welcome to your calorie calculator, {user_name}!")
     print(f"Your basal metabolic rate (BMR) is: {user_bmr}")
-    print(f"To maintain your current weight, you should be consuming {maintenance_calories} calories per day.")
+    print(
+        f"To maintain your current weight, you should be consuming {maintenance_calories} calories per day.")
     print(f"Your goal is to {user_goal} calories per day.")
 
     # Distribute calories into meal categories
-    meal_calories = distribute_calories(int(user_goal.split(" - ")[1].split(" ")[0]))  # Extract the calorie value from user_goal
+    # Extract the calorie value from user_goal
+    meal_calories = distribute_calories(
+        int(user_goal.split(" - ")[1].split(" ")[0]))
 
     print("\nCalorie Distribution for the Day:")
     for meal, calories in meal_calories.items():
         print(f"{meal.capitalize()}: {calories} calories")
 
     # Write information to a text file, including meal distribution
-    write_to_file(user_name, user_bmr, maintenance_calories, user_goal, meal_calories)
+    write_to_file(user_name, user_bmr, maintenance_calories,
+                  user_goal, meal_calories)
+
 
 if __name__ == "__main__":
     main()
