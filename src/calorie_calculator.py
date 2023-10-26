@@ -1,6 +1,6 @@
-from colorama import Fore, Back, Style
+from colorama import Fore
 
-print(Fore.RED + f"Hello and welcome to your calorie calculator!")
+print(Fore.RED + "Hello and welcome to your calorie calculator!")
 
 # take user name
 def get_name():
