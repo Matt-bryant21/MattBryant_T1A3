@@ -1,14 +1,15 @@
+from colorama import Fore, Back, Style
+
 # take user name
 def get_name():
     while True:
-        user_name = input("Please enter your name: ").strip()
+        user_name = input(Fore.RED + "Please enter your name: ").strip()
         if user_name:
             return user_name
-        print("Please enter your name; this field cannot be blank.")
+        print(Back.BLUE + "Please enter your name; this field cannot be blank.")
+
 
 # take user age
-
-
 def get_age():
     while True:
         try:
@@ -18,9 +19,9 @@ def get_age():
             print("Invalid age. Please enter a valid age (0-100).")
         except ValueError:
             print("Invalid input. Please enter a numeric age.")
+
+
 # take user gender
-
-
 def get_gender():
     genders = ["male", "female", "m", "f"]
     while True:
@@ -29,9 +30,8 @@ def get_gender():
             return user_gender
         print("Please enter either 'Male' or 'Female'.")
 
+
 # take user weight
-
-
 def get_weight():
     while True:
         try:
@@ -42,9 +42,9 @@ def get_weight():
             print("Invalid weight. Please enter a valid weight (0-130 kg).")
         except ValueError:
             print("Invalid input. Please enter a numeric weight.")
+
+
 # take user height
-
-
 def get_height():
     while True:
         try:
@@ -56,9 +56,8 @@ def get_height():
         except ValueError:
             print("Invalid input. Please enter a numeric height.")
 
+
 # calculate bmr for either male or female
-
-
 def calculate_bmr(user_age, user_gender, user_weight, user_height):
     if user_gender == "male":
         male_bmr = 66 + (13.7 * user_weight) + \
@@ -71,9 +70,8 @@ def calculate_bmr(user_age, user_gender, user_weight, user_height):
     else:
         raise ValueError("Invalid gender.")
 
+
 # take user activity level
-
-
 def get_activity_level():
     activity_levels = ["sedentary", "lightly active",
                        "moderately active", "very active", "extra active"]
@@ -86,9 +84,8 @@ def get_activity_level():
             return user_activity_level
         print("Please enter a valid activity level.")
 
+
 # calculate user maintenance calories
-
-
 def calculate_maintenance_calories(bmr, user_activity_level):
     activity_multipliers = {
         "sedentary": 1.2,
@@ -104,9 +101,8 @@ def calculate_maintenance_calories(bmr, user_activity_level):
     else:
         raise ValueError("Invalid activity level.")
 
+
 # take user goals and calculate new caloric intake
-
-
 def get_goals(maintenance_calories):
     while True:
         user_goal = input(
@@ -121,7 +117,7 @@ def get_goals(maintenance_calories):
                 return "Maintain - {} calories".format(maintenance_calories)
         print("Please enter a valid goal (lose weight, build muscle, maintain).")
 
-
+# write info to text file
 def write_to_file(user_name, user_bmr, maintenance_calories, user_goal, meal_calories):
     with open("calorie_info.txt", "w") as file:
         file.write("User Name: {}\n".format(user_name))
@@ -129,15 +125,14 @@ def write_to_file(user_name, user_bmr, maintenance_calories, user_goal, meal_cal
         file.write("Maintenance Calories: {}\n".format(maintenance_calories))
         file.write("User Goal: {}\n".format(user_goal))
 
-        # Write meal distribution to the text file
+        
         file.write("\nCalorie Distribution for the Day:\n")
         for meal, calories in meal_calories.items():
             file.write(f"{meal.capitalize()}: {calories} calories\n")
 
 
-# Add this function to your code to distribute calories into meal categories
+# Distribute calories into meal categories
 def distribute_calories(total_calories):
-    # Define the calorie distribution for each meal
     meal_distribution = {
         "breakfast": 0.25,
         "lunch": 0.35,
@@ -151,7 +146,7 @@ def distribute_calories(total_calories):
 
     return meal_calories
 
-
+# main function
 def main():
     user_name = get_name()
     user_age = get_age()
@@ -171,8 +166,7 @@ def main():
         "you should be consuming {maintenance_calories} calories per day.")
     print(f"Your goal is to {user_goal} calories per day.")
 
-    # Distribute calories into meal categories
-    # Extract the calorie value from user_goal
+   
     meal_calories = distribute_calories(
         int(user_goal.split(" - ")[1].split(" ")[0]))
 
@@ -180,10 +174,6 @@ def main():
     for meal, calories in meal_calories.items():
         print(f"{meal.capitalize()}: {calories} calories")
 
-    # Write information to a text file, including meal distribution
-    write_to_file(user_name, user_bmr, maintenance_calories,
-                  user_goal, meal_calories)
-
-
+    
 if __name__ == "__main__":
     main()
