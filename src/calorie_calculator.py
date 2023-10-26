@@ -1,3 +1,4 @@
+#take user name
 def get_name():
     while True:
         user_name = input("Please enter your name: ").strip()
@@ -5,6 +6,7 @@ def get_name():
             return user_name
         print("Please enter your name; this field cannot be blank.")
 
+# take user age
 def get_age():
     while True:
         try:
@@ -14,7 +16,7 @@ def get_age():
             print("Invalid age. Please enter a valid age (0-100).")
         except ValueError:
             print("Invalid input. Please enter a numeric age.")
-
+# take user gender
 def get_gender():
     genders = ["male", "female", "m", "f"]
     while True:
@@ -23,6 +25,7 @@ def get_gender():
             return user_gender
         print("Please enter either 'Male' or 'Female'.")
 
+# take user weight
 def get_weight():
     while True:
         try:
@@ -32,7 +35,7 @@ def get_weight():
             print("Invalid weight. Please enter a valid weight (0-130 kg).")
         except ValueError:
             print("Invalid input. Please enter a numeric weight.")
-
+# take user height
 def get_height():
     while True:
         try:
@@ -43,6 +46,7 @@ def get_height():
         except ValueError:
             print("Invalid input. Please enter a numeric height.")
 
+# calculate bmr for either male or female
 def calculate_bmr(user_age, user_gender, user_weight, user_height):
     if user_gender == "male":
         male_bmr = 66 + (13.7 * user_weight) + (5 * user_height) - (6.8 * user_age)
@@ -53,6 +57,7 @@ def calculate_bmr(user_age, user_gender, user_weight, user_height):
     else:
         raise ValueError("Invalid gender.")
 
+# take user activity level
 def get_activity_level():
     activity_levels = ["sedentary", "lightly active", "moderately active", "very active", "extra active"]
     while True:
@@ -61,6 +66,7 @@ def get_activity_level():
             return user_activity_level
         print("Please enter a valid activity level.")
 
+# calculate user maintenance calories
 def calculate_maintenance_calories(bmr, user_activity_level):
     activity_multipliers = {
         "sedentary": 1.2,
@@ -76,18 +82,20 @@ def calculate_maintenance_calories(bmr, user_activity_level):
     else:
         raise ValueError("Invalid activity level.")
 
+# take user goals and calculate new caloric intake
 def get_goals(maintenance_calories):
     while True:
         user_goal = input("What are your current goals? (lose weight, build muscle, maintain): ").strip().lower()
         if user_goal in ["lose weight", "build muscle", "maintain"]:
             if user_goal == "lose weight":
-                return maintenance_calories - 500
+                return "Lose Weight - {} calories".format(maintenance_calories - 500)
             elif user_goal == "build muscle":
-                return maintenance_calories + 500
+                return "Build Muscle - {} calories".format(maintenance_calories + 500)
             else:
-                return maintenance_calories
+                return "Maintain - {} calories".format(maintenance_calories)
         print("Please enter a valid goal (lose weight, build muscle, maintain).")
 
+# writing info to file
 def write_to_file(user_name, user_bmr, maintenance_calories, user_goal):
     with open("calorie_info.txt", "w") as file:
         file.write("User Name: {}\n".format(user_name))
@@ -95,6 +103,8 @@ def write_to_file(user_name, user_bmr, maintenance_calories, user_goal):
         file.write("Maintenance Calories: {}\n".format(maintenance_calories))
         file.write("User Goal: {}\n".format(user_goal))
 
+
+# main function for order of operations
 def main():
     user_name = get_name()
     user_age = get_age()
@@ -114,6 +124,7 @@ def main():
     # Write information to a text file
     write_to_file(user_name, user_bmr, maintenance_calories, user_goal)
     print("Information written to 'calorie_info.txt'.")
+    print("You can find this file in the /src directory of this program :)")
 
 if __name__ == "__main__":
     main()
