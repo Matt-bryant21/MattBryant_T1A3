@@ -79,7 +79,9 @@ def get_activity_level():
                        "moderately active", "very active", "extra active"]
     while True:
         user_activity_level = input(
-            "Please enter your activity level (sedentary, lightly active, moderately active, very active, extra active): ").strip().lower()
+            "Please enter your activity level (sedentary, "
+            "lightly active, moderately active, "
+            "very active, extra active): ").strip().lower()
         if user_activity_level in activity_levels:
             return user_activity_level
         print("Please enter a valid activity level.")
@@ -108,7 +110,8 @@ def calculate_maintenance_calories(bmr, user_activity_level):
 def get_goals(maintenance_calories):
     while True:
         user_goal = input(
-            "What are your current goals? (lose weight, build muscle, maintain): ").strip().lower()
+            "What are your current goals? (lose weight," 
+            "build muscle, maintain): ").strip().lower()
         if user_goal in ["lose weight", "build muscle", "maintain"]:
             if user_goal == "lose weight":
                 return "Lose Weight - {} calories".format(maintenance_calories - 500)
@@ -164,7 +167,8 @@ def main():
     print(f"Hello and welcome to your calorie calculator, {user_name}!")
     print(f"Your basal metabolic rate (BMR) is: {user_bmr}")
     print(
-        f"To maintain your current weight, you should be consuming {maintenance_calories} calories per day.")
+        f"To maintain your current weight,"
+        "you should be consuming {maintenance_calories} calories per day.")
     print(f"Your goal is to {user_goal} calories per day.")
 
     # Distribute calories into meal categories
