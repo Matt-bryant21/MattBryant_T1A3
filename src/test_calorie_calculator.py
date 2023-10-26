@@ -43,7 +43,8 @@ def test_get_activity_level_invalid_input():
 # Test case for calculate_maintenance_calories() function
 def test_calculate_maintenance_calories():
     # Test maintenance calories calculation
-    assert calorie_calculator.calculate_maintenance_calories(1500, "lightly active") == 2062
+    assert calorie_calculator.calculate_maintenance_calories(
+        1500, "lightly active") == 2062
 
 
 # Test case for get_goals() function
@@ -62,7 +63,8 @@ def test_write_to_file(tmp_path):
     user_goal = 1800
 
     file_path = tmp_path / "test_output.txt"
-    calorie_calculator.write_to_file(user_name, user_bmr, maintenance_calories, user_goal, file_path)
+    calorie_calculator.write_to_file(
+        user_name, user_bmr, maintenance_calories, user_goal, file_path)
 
     assert file_path.is_file()
     with open(file_path, "r") as file:
