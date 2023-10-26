@@ -1,14 +1,16 @@
 from colorama import Fore, Back, Style
 
+print(Fore.RED + f"Hello and welcome to your calorie calculator!")
+
 # take user name
 def get_name():
     while True:
         user_name = input(Fore.RED + "Please enter your name: ").strip()
         if user_name:
             return user_name
-        print(Back.BLUE + "Please enter your name; this field cannot be blank.")
+        print("Please enter your name; this field cannot be blank.")
 
-
+        
 # take user age
 def get_age():
     while True:
@@ -60,12 +62,12 @@ def get_height():
 # calculate bmr for either male or female
 def calculate_bmr(user_age, user_gender, user_weight, user_height):
     if user_gender == "male":
-        male_bmr = 66 + (13.7 * user_weight) + \
-            (5 * user_height) - (6.8 * user_age)
+        male_bmr = (10 * user_weight) + \
+            (6.25 * user_height) - (5 * user_age) + 5
         return male_bmr
     elif user_gender == "female":
-        female_bmr = 655 + (9.6 * user_weight) + \
-            (1.8 * user_height) - (4.7 * user_age)
+        female_bmr = (10 * user_weight) + \
+            (6.25 * user_height) - (5 * user_age) - 161
         return female_bmr
     else:
         raise ValueError("Invalid gender.")
@@ -106,7 +108,7 @@ def calculate_maintenance_calories(bmr, user_activity_level):
 def get_goals(maintenance_calories):
     while True:
         user_goal = input(
-            "What are your current goals? (lose weight,"
+            "What are your current goals? (lose weight, "
             "build muscle, maintain): ").strip().lower()
         if user_goal in ["lose weight", "build muscle", "maintain"]:
             if user_goal == "lose weight":
@@ -159,11 +161,13 @@ def main():
         user_bmr, user_activity_level)
     user_goal = get_goals(maintenance_calories)
 
-    print(f"Hello and welcome to your calorie calculator, {user_name}!")
+    
     print(f"Your basal metabolic rate (BMR) is: {user_bmr}")
+    print()
     print(
-        "To maintain your current weight,"
-        "you should be consuming {maintenance_calories} calories per day.")
+        f"To maintain your current weight,"
+        f"you should be consuming {maintenance_calories} calories per day.")
+    print()
     print(f"Your goal is to {user_goal} calories per day.")
 
    
