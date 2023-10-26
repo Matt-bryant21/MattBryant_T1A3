@@ -110,7 +110,7 @@ def calculate_maintenance_calories(bmr, user_activity_level):
 def get_goals(maintenance_calories):
     while True:
         user_goal = input(
-            "What are your current goals? (lose weight," 
+            "What are your current goals? (lose weight,"
             "build muscle, maintain): ").strip().lower()
         if user_goal in ["lose weight", "build muscle", "maintain"]:
             if user_goal == "lose weight":
@@ -167,7 +167,7 @@ def main():
     print(f"Hello and welcome to your calorie calculator, {user_name}!")
     print(f"Your basal metabolic rate (BMR) is: {user_bmr}")
     print(
-        f"To maintain your current weight,"
+        "To maintain your current weight,"
         "you should be consuming {maintenance_calories} calories per day.")
     print(f"Your goal is to {user_goal} calories per day.")
 

@@ -1,5 +1,5 @@
 # Matt Bryant T1A3  
-[Source File Repo](https://github.com/Matt-bryant21/T1A3)
+[Source File Repo](https://github.com/Matt-bryant21/MattBryant_T1A3)
 
 ## Referenced Materials
 
@@ -16,4 +16,4 @@ PEP8
 
 ### - Project management screenshots
 
-## Designed Help Documentation with instructions for using app
+## Installation Instructions
