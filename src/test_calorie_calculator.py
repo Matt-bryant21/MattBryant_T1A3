@@ -1,41 +1,50 @@
 import calorie_calculator
 
+
 # Test cases for get_age() function
 def test_get_age_valid_input():
     # Test valid age input
     assert calorie_calculator.get_age() == 25
 
+
 def test_get_age_invalid_input():
     # Test invalid age input (non-numeric)
     assert calorie_calculator.get_age() == 0
+
 
 # Test cases for get_gender() function
 def test_get_gender_valid_input():
     # Test valid gender input
     assert calorie_calculator.get_gender() == "male"
 
+
 def test_get_gender_invalid_input():
     # Test invalid gender input
     assert calorie_calculator.get_gender() == "unknown"
+
 
 # Test case for calculate_bmr() function
 def test_calculate_bmr():
     # Test BMR calculation for a known input
     assert calorie_calculator.calculate_bmr(30, "female", 70, 160) == 1350
 
+
 # Test cases for get_activity_level() function
 def test_get_activity_level_valid_input():
     # Test valid activity level input
     assert calorie_calculator.get_activity_level() == "sedentary"
 
+
 def test_get_activity_level_invalid_input():
     # Test invalid activity level input
     assert calorie_calculator.get_activity_level() == "unknown"
+
 
 # Test case for calculate_maintenance_calories() function
 def test_calculate_maintenance_calories():
     # Test maintenance calories calculation
     assert calorie_calculator.calculate_maintenance_calories(1500, "lightly active") == 2062
+
 
 # Test case for get_goals() function
 def test_get_goals():
@@ -43,6 +52,7 @@ def test_get_goals():
     assert calorie_calculator.get_goals(2000) == 1500  # Weight loss goal
     assert calorie_calculator.get_goals(2000) == 2500  # Muscle gain goal
     assert calorie_calculator.get_goals(2000) == 2000  # Maintain goal
+
 
 # Test case for write_to_file() function (requires file system interaction)
 def test_write_to_file(tmp_path):
