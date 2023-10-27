@@ -65,6 +65,12 @@ Then each consecutive info line was written to include the desired variable;
         file.write("Maintenance Calories: {}\n".format(maintenance_calories))
         file.write("User Goal: {}\n".format(user_goal))
 
+As the meal plan / calorie categories were done last, the file write for that was done seperately, it also required a slightly more complex code using multipliers to acheive the correct ratios based on the users goal. 
+
+     file.write("\nCalorie Distribution for the Day:\n")
+        for meal, calories in meal_calories.items():
+            file.write(f"{meal.capitalize()}: {calories} calories\n")
+
 
 ## Implementation Plan
 ### - Outline each feature and how they'll be implemented and *checklists for each feature (min 5)*

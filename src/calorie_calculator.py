@@ -178,6 +178,9 @@ def main():
     for meal, calories in meal_calories.items():
         print(f"{meal.capitalize()}: {calories} calories")
 
-    
+    print()
+    print()
+    print("A text file named 'calorie_info' has been saved"
+          "in the directory above 'src' :-)")
 if __name__ == "__main__":
     main()
