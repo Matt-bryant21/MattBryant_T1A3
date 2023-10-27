@@ -1,15 +1,22 @@
 from colorama import Fore
 
+
 print(Fore.RED + "Hello and welcome to your calorie calculator!")
+print("----------------------------------------------------------------")
+print("To help you understand how many calories you should be eating,"
+      " We will gather some basic information and determine your goals.")
+print("----------------------------------------------------------------")
 
 
 # take user name
 def get_name():
     while True:
         user_name = input(Fore.RED + "Please enter your name: ").strip()
-        if user_name:
+        if user_name and user_name.isalpha():
             return user_name
-        print("Please enter your name; this field cannot be blank.")
+        else:
+            print("Please enter a valid name.")
+        
 
 
 # take user age
@@ -139,7 +146,7 @@ def distribute_calories(total_calories):
     meal_distribution = {
         "breakfast": 0.3,
         "lunch": 0.3,
-        "dinner": 0.2,
+        "dinner": 0.3,
         "snacks": 0.1,
     }
 
@@ -163,26 +170,28 @@ def main():
         user_bmr, user_activity_level)
     user_goal = get_goals(maintenance_calories)
 
-    print(f"User Name: {user_name}")
-    print(f"Your basal metabolic rate (BMR) is: {user_bmr}")
-    print()
+    print("----------------------------------------------------------------")
+    print(f"Thanks for that {user_name}, Your basal metabolic rate (BMR) is: {user_bmr}")
+    print("Your Basal Metabolic Rate is how much energy your body burns per day by itself")
+    print("----------------------------------------------------------------")
     print(
         f"To maintain your current weight,"
         f"you should be consuming {maintenance_calories} calories per day.")
-    print()
+    print("----------------------------------------------------------------")
     print(f"Your goal is to {user_goal} calories per day.")
-
+    print("----------------------------------------------------------------")
     meal_calories = distribute_calories(
         int(user_goal.split(" - ")[1].split(" ")[0]))
 
     print("\nCalorie Distribution for the Day:")
     for meal, calories in meal_calories.items():
         print(f"{meal.capitalize()}: {calories} calories")
-
+    
     print()
-    print()
+    print("----------------------------------------------------------------")
     print("A text file named 'calorie_info' has been saved"
           "in the directory above 'src' :-)")
+    print("----------------------------------------------------------------")
 
 
 if __name__ == "__main__":
