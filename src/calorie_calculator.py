@@ -2,6 +2,7 @@ from colorama import Fore
 
 print(Fore.RED + "Hello and welcome to your calorie calculator!")
 
+
 # take user name
 def get_name():
     while True:
@@ -10,7 +11,7 @@ def get_name():
             return user_name
         print("Please enter your name; this field cannot be blank.")
 
-        
+
 # take user age
 def get_age():
     while True:
@@ -119,6 +120,7 @@ def get_goals(maintenance_calories):
                 return "Maintain - {} calories".format(maintenance_calories)
         print("Please enter a valid goal (lose weight, build muscle, maintain).")
 
+
 # write info to text file
 def write_to_file(user_name, user_bmr, maintenance_calories, user_goal, meal_calories):
     with open("calorie_info.txt", "w") as file:
@@ -127,7 +129,6 @@ def write_to_file(user_name, user_bmr, maintenance_calories, user_goal, meal_cal
         file.write("Maintenance Calories: {}\n".format(maintenance_calories))
         file.write("User Goal: {}\n".format(user_goal))
 
-        
         file.write("\nCalorie Distribution for the Day:\n")
         for meal, calories in meal_calories.items():
             file.write(f"{meal.capitalize()}: {calories} calories\n")
@@ -136,10 +137,10 @@ def write_to_file(user_name, user_bmr, maintenance_calories, user_goal, meal_cal
 # Distribute calories into meal categories
 def distribute_calories(total_calories):
     meal_distribution = {
-        "breakfast": 0.25,
-        "lunch": 0.35,
-        "dinner": 0.25,
-        "snacks": 0.15,
+        "breakfast": 0.3,
+        "lunch": 0.3,
+        "dinner": 0.2,
+        "snacks": 0.1,
     }
 
     meal_calories = {}
@@ -147,6 +148,7 @@ def distribute_calories(total_calories):
         meal_calories[meal] = int(total_calories * ratio)
 
     return meal_calories
+
 
 # main function
 def main():
@@ -161,7 +163,7 @@ def main():
         user_bmr, user_activity_level)
     user_goal = get_goals(maintenance_calories)
 
-    
+    print(f"User Name: {user_name}")
     print(f"Your basal metabolic rate (BMR) is: {user_bmr}")
     print()
     print(
@@ -170,7 +172,6 @@ def main():
     print()
     print(f"Your goal is to {user_goal} calories per day.")
 
-   
     meal_calories = distribute_calories(
         int(user_goal.split(" - ")[1].split(" ")[0]))
 
@@ -182,5 +183,7 @@ def main():
     print()
     print("A text file named 'calorie_info' has been saved"
           "in the directory above 'src' :-)")
+
+
 if __name__ == "__main__":
     main()
