@@ -128,17 +128,20 @@ def get_goals(maintenance_calories):
         print("Please enter a valid goal (lose weight, build muscle, maintain).")
 
 
-# write info to text file
+ # write info to text file
 def write_to_file(user_name, user_bmr, maintenance_calories, user_goal, meal_calories):
-    with open("calorie_info.txt", "w") as file:
-        file.write("User Name: {}\n".format(user_name))
-        file.write("Basal Metabolic Rate (BMR): {}\n".format(user_bmr))
-        file.write("Maintenance Calories: {}\n".format(maintenance_calories))
-        file.write("User Goal: {}\n".format(user_goal))
+    try:
+        with open("calorie_info.txt", "w") as file:
+            file.write("User Name: {}\n".format(user_name))
+            file.write("Basal Metabolic Rate (BMR): {}\n".format(user_bmr))
+            file.write("Maintenance Calories: {}\n".format(maintenance_calories))
+            file.write("User Goal: {}\n".format(user_goal))
 
-        file.write("\nCalorie Distribution for the Day:\n")
-        for meal, calories in meal_calories.items():
-            file.write(f"{meal.capitalize()}: {calories} calories\n")
+            file.write("\nCalorie Distribution for the Day:\n")
+            for meal, calories in meal_calories.items():
+                file.write(f"{meal.capitalize()}: {calories} calories\n")
+    except Exception as e:
+        print(f"An error occurred while writing to the file: {e}")
 
 
 # Distribute calories into meal categories

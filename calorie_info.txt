@@ -1,6 +1,0 @@
-User Name: John
-Basal Metabolic Rate (BMR): 1500
-Maintenance Calories: 2000
-User Goal: 1800
-
-Calorie Distribution for the Day:
