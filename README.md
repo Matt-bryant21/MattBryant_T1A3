@@ -145,3 +145,4 @@ Now the run_calculator.sh script can be run:
 
     ./run_calculator.sh
 
+To use the application; simply enter your information in the input provided. All information inputs are mandatory so you will need to know each of them prior to using the application.

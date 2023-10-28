@@ -1,10 +1,6 @@
-User Name: Matt
-Basal Metabolic Rate (BMR): 1402.0
-Maintenance Calories: 1928
-User Goal: Lose Weight - 1428 calories
+User Name: John
+Basal Metabolic Rate (BMR): 1500
+Maintenance Calories: 2000
+User Goal: 1800
 
 Calorie Distribution for the Day:
-Breakfast: 357 calories
-Lunch: 499 calories
-Dinner: 357 calories
-Snacks: 214 calories
