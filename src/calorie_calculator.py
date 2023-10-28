@@ -142,6 +142,9 @@ def write_to_file(user_name, user_bmr, maintenance_calories, user_goal, meal_cal
                 file.write(f"{meal.capitalize()}: {calories} calories\n")
     except Exception as e:
         print(f"An error occurred while writing to the file: {e}")
+    
+    
+
 
 
 # Distribute calories into meal categories
@@ -193,7 +196,7 @@ def main():
     print()
     print("----------------------------------------------------------------")
     print("A text file named 'calorie_info' has been saved"
-          "in the directory above 'src' :-)")
+          "in the directory 'src' :-)")
     print("----------------------------------------------------------------")
 
 
